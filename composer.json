@@ -1,0 +1,19 @@
+{
+    "name": "volodymyr-klymniuk/money-bundle",
+    "description": "Symfony bundle for working with money value object abstraction",
+    "type": "library",
+    "license": "MIT-advertising",
+    "autoload": {
+        "psr-4": {
+            "VolodymyrKlymniuk\\MoneyBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Volodymyr Klymniuk",
+            "email": "Volodymyr.Klymniuk@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
