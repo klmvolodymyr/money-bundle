@@ -2,6 +2,11 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Traits;
 
+use VolodymyrKlymniuk\MoneyBundle\Exception\EmptyPriceException;
+use VolodymyrKlymniuk\MoneyBundle\Exception\IncorrectAmountTypeException;
+use VolodymyrKlymniuk\MoneyBundle\Money\Money;
+use VolodymyrKlymniuk\MoneyBundle\Money\MoneyInterface;
+
 trait OrmEntityMoneyTrait
 {
     /**

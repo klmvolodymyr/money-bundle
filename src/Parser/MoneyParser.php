@@ -2,6 +2,10 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Parser;
 
+use VolodymyrKlymniuk\MoneyBundle\Currencies\CurrenciesInterface;
+use VolodymyrKlymniuk\MoneyBundle\Exception\Currencies\CurrencyNotRegisteredException;
+use VolodymyrKlymniuk\MoneyBundle\Money\CurrencyInterface;
+
 class MoneyParser implements ParserInterface
 {
     /**

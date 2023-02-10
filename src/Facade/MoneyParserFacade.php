@@ -2,6 +2,9 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Facade;
 
+use VolodymyrKlymniuk\MoneyBundle\Money\CurrencyInterface;
+use VolodymyrKlymniuk\MoneyBundle\Parser\ParserInterface;
+
 /**
  * Class MoneyParserFacade
  *
@@ -12,9 +15,6 @@ namespace VolodymyrKlymniuk\MoneyBundle\Facade;
  */
 class MoneyParserFacade extends AbstractFacade
 {
-    /**
-     * @return string
-     */
     protected static function getFacadeAccessor(): string
     {
         return ParserInterface::class;

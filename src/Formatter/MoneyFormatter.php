@@ -2,6 +2,10 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Formatter;
 
+use VolodymyrKlymniuk\MoneyBundle\Currencies\CurrenciesInterface;
+use VolodymyrKlymniuk\MoneyBundle\Exception\Currencies\CurrencyNotRegisteredException;
+use VolodymyrKlymniuk\MoneyBundle\Money\MoneyInterface;
+
 class MoneyFormatter implements FormatterInterface
 {
     /**
@@ -29,7 +33,6 @@ class MoneyFormatter implements FormatterInterface
     public function format(MoneyInterface $money): string
     {
         $fractionalSize = $this->getFractional($money);
-
         $amount = $money->getAmount();
         $baseAmount = $this->getBaseAmount($amount);
         $valueLength = \strlen($baseAmount);
@@ -38,12 +41,14 @@ class MoneyFormatter implements FormatterInterface
         if ($valueLength > $fractionalSize) {
             $formatted = \substr($baseAmount, 0, $valueLength - $fractionalSize);
             $decimalDigits = \substr($baseAmount, $valueLength - $fractionalSize);
+
             if (\strlen($decimalDigits) > 0) {
                 $formatted .= '.' . $decimalDigits;
             }
         } else {
             $formatted = '0.' . str_pad('', $fractionalSize - $valueLength, '0') . $baseAmount;
         }
+
         if ($this->isNegativeAmount($amount)) {
             $formatted = '-' . $formatted;
         }
@@ -63,11 +68,6 @@ class MoneyFormatter implements FormatterInterface
         return $this->currencies->fractionalFor($money->getCurrency());
     }
 
-    /**
-     * @param string $amount
-     *
-     * @return string
-     */
     private function getBaseAmount(string $amount): string
     {
         $isNegativeAmount = $this->isNegativeAmount($amount);
@@ -78,11 +78,6 @@ class MoneyFormatter implements FormatterInterface
         return $amount;
     }
 
-    /**
-     * @param string $amount
-     *
-     * @return bool
-     */
     private function isNegativeAmount(string $amount): bool
     {
         return $amount[0] === '-';

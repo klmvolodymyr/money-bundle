@@ -2,6 +2,8 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Formatter;
 
+use VolodymyrKlymniuk\MoneyBundle\Money\MoneyInterface;
+
 interface FormatterInterface
 {
     /**

@@ -1,4 +1,13 @@
 parameters:
+  app.money.currencies.list:
+    - {code: 'DREAM', fractional: 6}
+    - {code: 'ETH', fractional: 18}
+    - {code: 'BTC', fractional: 8}
+    - {code: 'USD', fractional: 2}
+    - {code: 'EUR', fractional: 2}
+    - {code: 'UAH', fractional: 2}
+    - {code: 'BYN', fractional: 2}
+    - {code: 'RUB', fractional: 2}
 
 services:
   # default configuration for services in *this* file
@@ -8,3 +17,28 @@ services:
     # this means you cannot fetch services directly from the container via $container->get()
     # if you need to do this, you can override this setting on individual services
     public: true
+
+  VolodymyrKlymniuk\MoneyBundle\Money\:
+    resource: '../../Money/*'
+    exclude: '../../Money/{Money.php, Currency.php}'
+
+  VolodymyrKlymniuk\MoneyBundle\Currencies\CurrencyRegistry:
+    shared: true
+    arguments: ['%app.money.currencies.list%']
+
+  VolodymyrKlymniuk\MoneyBundle\Currencies\CurrenciesInterface:
+    alias: VolodymyrKlymniuk\MoneyBundle\Currencies\CurrencyRegistry
+
+  VolodymyrKlymniuk\MoneyBundle\Formatter\MoneyFormatter:
+    shared: true
+    arguments: ['@VolodymyrKlymniuk\MoneyBundle\Currencies\CurrenciesInterface']
+
+  VolodymyrKlymniuk\MoneyBundle\Formatter\FormatterInterface:
+    alias: VolodymyrKlymniuk\MoneyBundle\Formatter\MoneyFormatter
+
+  VolodymyrKlymniuk\MoneyBundle\Parser\MoneyParser:
+    shared: true
+    arguments: ['@VolodymyrKlymniuk\MoneyBundle\Currencies\CurrenciesInterface']
+
+  VolodymyrKlymniuk\MoneyBundle\Parser\ParserInterface:
+    alias: VolodymyrKlymniuk\MoneyBundle\Parser\MoneyParser

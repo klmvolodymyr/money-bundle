@@ -2,6 +2,9 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Facade;
 
+use VolodymyrKlymniuk\MoneyBundle\Formatter\FormatterInterface;
+use VolodymyrKlymniuk\MoneyBundle\Money\MoneyInterface;
+
 /**
  * Class FormatterFacade
  *
@@ -12,9 +15,6 @@ namespace VolodymyrKlymniuk\MoneyBundle\Facade;
  */
 class MoneyFormatterFacade extends AbstractFacade
 {
-    /**
-     * @return string
-     */
     protected static function getFacadeAccessor(): string
     {
         return FormatterInterface::class;

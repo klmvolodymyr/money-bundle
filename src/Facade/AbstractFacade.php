@@ -7,10 +7,6 @@ use Psr\Container\ContainerInterface;
 abstract class AbstractFacade
 {
     protected static $container;
-
-    /**
-     * @return string
-     */
     abstract protected static function getFacadeAccessor(): string;
 
     /**

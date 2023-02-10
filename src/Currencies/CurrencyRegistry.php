@@ -2,12 +2,14 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Currencies;
 
+use VolodymyrKlymniuk\MoneyBundle\Exception\Currencies\CurrencyNotRegisteredException;
+use VolodymyrKlymniuk\MoneyBundle\Exception\Currencies\IncorrectCurrencyCodeException;
+use VolodymyrKlymniuk\MoneyBundle\Exception\Currencies\IncorrectCurrencyFractionalException;
+use VolodymyrKlymniuk\MoneyBundle\Money\CurrencyInterface;
+
 class CurrencyRegistry implements CurrenciesInterface
 {
-    /**
-     * @var array
-     */
-    private $currencies = [];
+    private array $currencies = [];
 
     /**
      * CurrencyRegistry constructor.
@@ -38,7 +40,7 @@ class CurrencyRegistry implements CurrenciesInterface
     /**
      * Get fractional part of the currency. It could be used in currency formatting methods.
      *
-     * @see \MoneyBundle\Formatter\MoneyFormatter::format()
+     * @see \VolodymyrKlymniuk\MoneyBundle\Formatter\MoneyFormatter::format()
      *
      * @param CurrencyInterface $currency
      *
@@ -55,22 +57,12 @@ class CurrencyRegistry implements CurrenciesInterface
         return $this->currencies[$currency->getCode()];
     }
 
-    /**
-     * @param CurrencyInterface $currency
-     *
-     * @return bool
-     */
     public function contains(CurrencyInterface $currency): bool
     {
         return $this->containsCode($currency->getCode());
     }
 
-    /**
-     * @param string $code
-     *
-     * @return bool
-     */
-    public function containsCode($code): bool
+    public function containsCode(string $code): bool
     {
         return \array_key_exists($code, $this->currencies);
     }

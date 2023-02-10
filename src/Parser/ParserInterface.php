@@ -2,6 +2,8 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Parser;
 
+use VolodymyrKlymniuk\MoneyBundle\Money\CurrencyInterface;
+
 interface ParserInterface
 {
     /**

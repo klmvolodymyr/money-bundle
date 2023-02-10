@@ -11,19 +11,11 @@ class Currency implements CurrencyInterface
      */
     private $code;
 
-    /**
-     * @param string $code
-     */
     public function __construct(string $code)
     {
         $this->code = $code;
     }
 
-    /**
-     * Returns the currency code.
-     *
-     * @return string
-     */
     public function getCode(): string
     {
         return $this->code;

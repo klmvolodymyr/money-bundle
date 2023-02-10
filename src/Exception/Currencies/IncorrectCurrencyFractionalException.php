@@ -2,6 +2,8 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Exception\Currencies;
 
+use VolodymyrKlymniuk\MoneyBundle\Exception\MoneyException;
+
 class IncorrectCurrencyFractionalException extends MoneyException
 {
     /**

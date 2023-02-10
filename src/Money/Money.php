@@ -2,6 +2,10 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Money;
 
+use VolodymyrKlymniuk\MoneyBundle\Exception\IncorrectAmountTypeException;
+use VolodymyrKlymniuk\MoneyBundle\Facade\MoneyFormatterFacade;
+use VolodymyrKlymniuk\MoneyBundle\Facade\MoneyParserFacade;
+
 class Money implements MoneyInterface
 {
     /**
@@ -58,17 +62,11 @@ class Money implements MoneyInterface
         return new static($rawAmount, $currency);
     }
 
-    /**
-     * @return string
-     */
     public function getAmount(): string
     {
         return $this->amount;
     }
 
-    /**
-     * @return CurrencyInterface
-     */
     public function getCurrency(): CurrencyInterface
     {
         return $this->currency;

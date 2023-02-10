@@ -2,6 +2,9 @@
 
 namespace VolodymyrKlymniuk\MoneyBundle\Currencies;
 
+use VolodymyrKlymniuk\MoneyBundle\Exception\Currencies\CurrencyNotRegisteredException;
+use VolodymyrKlymniuk\MoneyBundle\Money\CurrencyInterface;
+
 interface CurrenciesInterface
 {
     /**
@@ -20,7 +23,7 @@ interface CurrenciesInterface
      *
      * @return bool
      */
-    public function containsCode($code): bool;
+    public function containsCode(string $code): bool;
 
     /**
      * Returns the subunit for a currency.
